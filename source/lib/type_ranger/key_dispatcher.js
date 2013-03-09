@@ -1,5 +1,6 @@
 // Takes care of various keys pressed on a keyboard
 TypeRanger.KeyDispatcher = new JS.Class(TypeRanger.Element, {
+  
 
   initialize: function(typeranger) {
 
@@ -26,7 +27,8 @@ TypeRanger.KeyDispatcher = new JS.Class(TypeRanger.Element, {
     this.key_is_special = false;
 
     for(e in this.events) {
-      this.input_container.bind(e, $.proxy(this.events[e], this));
+      var self = this;
+      this.input_container.bind(e, this.proxy(this.events[e]));
     }
 
   },
@@ -42,11 +44,11 @@ TypeRanger.KeyDispatcher = new JS.Class(TypeRanger.Element, {
     },
     keyup: function() {
       if(!this.key_is_down) { this.input_container.change(); }
-      this.key_is_down = false;       
+      this.key_is_down = false;
     },
     change: function() {
       if(this.key_is_special) { this.clear_current_input(); return; }
-      this.typeranger.text_container.push(this.current_input());
+      this.typeranger.text_container.push(this.get_current_input());
     }
 
   },
@@ -67,16 +69,16 @@ TypeRanger.KeyDispatcher = new JS.Class(TypeRanger.Element, {
   // function it also sets this.key_is_special to true. We will later
   // check for this flag in #events.change()
   key_handler_in_wrapper: function(k) {
-    return $.proxy(function() {
+    return this.proxy(function() {
       this.key_is_special = true;
       var self = this;
-      $.proxy(this.keys[k], this)();
-    }, this);
+      this.proxy(this.keys[k])();
+    });
   },
 
   // Retrieves what's left in the input container. It could be a single char (most likely)
   // or it could be a string of chars (when a key is held and one char keeps being printed).
-  current_input: function() {
+  get_current_input: function() {
     var c = this.input_container.val();
     this.clear_current_input();
     return c;

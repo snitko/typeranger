@@ -4,6 +4,7 @@ TypeRanger.TextContainer = new JS.Class(TypeRanger.Element, {
   initialize: function() {
     this.callSuper();
     this.el = $(".editor");    
+    this.id = Math.random();
   },
 
   // pushes string to the end of the content

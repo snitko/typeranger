@@ -2,6 +2,8 @@
 // (like TextContainer or Caret) inherit.
 TypeRanger.Element = new JS.Class({
 
+  include: Proxy,
+
   initialize: function(typeranger) {
     this.typeranger = typeranger;
   }
