@@ -71,7 +71,6 @@ TypeRanger.KeyDispatcher = new JS.Class(TypeRanger.Element, {
   key_handler_in_wrapper: function(k) {
     return this.proxy(function() {
       this.key_is_special = true;
-      var self = this;
       this.proxy(this.keys[k])();
     });
   },

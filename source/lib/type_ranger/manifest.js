@@ -17,7 +17,7 @@ JS.Packages(function() { with(this) {
     file(ROOT + 'vendor/rangy-1.3alpha.772/rangy-core.js')
         .provides('rangy');
 
-    file(ROOT + 'vendor/keymaster.min.js')
+    file(ROOT + 'vendor/keymaster.js')
         .provides('key');
 
     file(TR_LIB_PATH + '/proxy.js')
@@ -26,7 +26,7 @@ JS.Packages(function() { with(this) {
 
     file(TR_LIB_PATH + '/element.js')
       .provides('TypeRanger.Element')
-      .requires('JS.Module', 'JS.Class', 'JS.Kernel', 'JS.Singleton', 'Proxy');
+      .requires('JS.Module', 'JS.Class', 'JS.Kernel', 'JS.Singleton', 'Proxy', 'jQuery');
 
     file(TR_LIB_PATH + '/key_dispatcher.js')
       .provides('TypeRanger.KeyDispatcher')

@@ -13,6 +13,8 @@ TypeRanger.TextContainer = new JS.Class(TypeRanger.Element, {
   },
 
   remove_prev_char: function() {
+    console.log('hello')
+    this.called = 'remove_prev_char';
     this.el.html(this.el.html().slice(0, -1));                 
   }
 

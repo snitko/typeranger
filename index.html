@@ -4,12 +4,11 @@
 <title>TypeRanger</title>
 <link href="source/stylesheets/css/typeranger.css" media="screen" rel="stylesheet" type="text/css" />
 
+<script>ROOT = './';</script>
 <script type="text/javascript" src="node_modules/jsclass/min/loader-browser.js"></script>
 <script type="text/javascript" src="source/lib/type_ranger/manifest.js"></script>
-
 <script>
   JS.require("TypeRanger.Base", function() {
-    ROOT = '../';
     new TypeRanger.Base();
     $(".editor").focus();
   });
