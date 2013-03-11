@@ -7,4 +7,5 @@
 .caret {
   height: 1em;
   width: 1px;
-  background-color: #000; }
+  background-color: #000;
+  position: absolute; }

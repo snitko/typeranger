@@ -28,20 +28,27 @@ JS.Packages(function() { with(this) {
       .provides('TypeRanger.Element')
       .requires('JS.Module', 'JS.Class', 'JS.Kernel', 'JS.Singleton', 'Proxy', 'jQuery');
 
+    file(TR_LIB_PATH + '/views/view.js')
+      .provides('TypeRanger.View')
+      .requires('JS.Module', 'JS.Class', 'JS.Kernel', 'JS.Singleton', 'Proxy', 'jQuery');
+
     file(TR_LIB_PATH + '/key_dispatcher.js')
       .provides('TypeRanger.KeyDispatcher')
-      .requires('JS.Module', 'JS.Class', 'JS.Kernel', 'JS.Singleton', 'key', 'TypeRanger.Element');
+      .requires('key', 'TypeRanger.Element');
 
     file(TR_LIB_PATH + '/text_container.js')
       .provides('TypeRanger.TextContainer')
-      .requires('JS.Module', 'JS.Class', 'JS.Kernel', 'JS.Singleton', 'TypeRanger.Element');
+      .requires('TypeRanger.Element');
 
+    file(TR_LIB_PATH + '/views/caret_view.js')
+      .provides('TypeRanger.CaretView')
+      .requires('TypeRanger.View');
     file(TR_LIB_PATH + '/caret.js')
       .provides('TypeRanger.Caret')
-      .requires('JS.Module', 'JS.Class', 'JS.Kernel', 'JS.Singleton', 'rangy', 'TypeRanger.Element');
+      .requires('TypeRanger.Element', 'TypeRanger.CaretView');
 
     file(TR_LIB_PATH + '/base.js')
       .provides('TypeRanger.Base')
-      .requires('JS.Module', 'JS.Class', 'JS.Kernel', 'JS.Singleton', 'rangy', 'TypeRanger.Caret', 'TypeRanger.KeyDispatcher', 'TypeRanger.TextContainer');
+      .requires('TypeRanger.Caret', 'TypeRanger.KeyDispatcher', 'TypeRanger.TextContainer');
 
 }});
