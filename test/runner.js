@@ -14,4 +14,5 @@ JS.require("TypeRanger.Base", function() {});
 JS.require('JS.Test', function() {
   TR = new TypeRanger.Base();
   JS.require('TypeRanger.KeyDispatcherSpec', JS.Test.method('autorun'));
+  JS.require('TypeRanger.CaretSpec',         JS.Test.method('autorun'));
 });

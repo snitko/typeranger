@@ -9,10 +9,12 @@ TypeRanger.KeyDispatcher = new JS.Class(TypeRanger.Element, {
     // Set the text field through which we will capture characters
     this.input_container = $("#input_container").focus();
     // Refocus immediately if focus is lost
-    this.input_container.blur(function() {
-      var that = this;
-      setTimeout(function() { that.focus(); }, 0);
-    });
+    this.input_container.blur(this.proxy(function() {
+      setTimeout(this.proxy(function() {
+        this.input_container.focus();
+      }, 0));
+    }));
+    this.input_container.focus();
 
     // Overwriting key.filter so that keymaster.js only works on
     // our input_container input field
