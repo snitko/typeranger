@@ -9,12 +9,13 @@ TypeRanger.TextContainer = new JS.Class(TypeRanger.Element, {
 
   // pushes string to the end of the content
   push: function(s) {
-    this.el.html(this.el.html() + s);      
+    this.el.html(this.el.html() + s);
+    this.typeranger.caret.move_right(1);    
   },
 
   remove_prev_char: function() {
-    this.called = 'remove_prev_char';
-    this.el.html(this.el.html().slice(0, -1));                 
+    this.typeranger.caret.move_left(1);    
+    this.el.html(this.el.html().slice(0, -1));
   }
 
 });

@@ -9,3 +9,7 @@
   width: 1px;
   background-color: #000;
   position: absolute; }
+
+.shadowCaret {
+  height: 0px;
+  width: 0px; }

@@ -2,19 +2,19 @@ TypeRanger.Caret = new JS.Class(TypeRanger.Element, {
 
   initialize: function(typeranger) {
     this.callSuper();
-    // Set position to the beginning of the block
-    this.position = { block: typeranger.text_container, position: 0 }
-    this.view     = new TypeRanger.CaretView(this);
+    this.view = new TypeRanger.CaretView(this);
+    this.current_pos = 0;
   },
 
-  move_left:  function(distance) {},
-  move_right: function(distance) {},
+  move_left:  function(distance) { this.update_position(-distance); },
+  move_right: function(distance) { this.update_position(distance); },
   move_down:  function()         {},
   move_up:    function()         {},
 
-  select_region: function(start, end) {
-    // start == { block: el, position: int }
-    // end   == { block: el, position: int }
+  update_position: function(distance) {
+    this.current_pos = this.current_pos + distance;
+    this.view.place_shadow_at(this.current_pos);
+    this.view.render(); 
   }
 
 });
