@@ -20,6 +20,9 @@ JS.Packages(function() { with(this) {
     file(ROOT + 'vendor/keymaster.js')
         .provides('key');
 
+    file(ROOT + 'vendor/underscore-min.js')
+        .provides('_');
+
     file(ROOT + 'vendor/md5.js')
         .provides('hex_md5');
 
@@ -29,7 +32,7 @@ JS.Packages(function() { with(this) {
 
     file(TR_LIB_PATH + '/element.js')
       .provides('TypeRanger.Element')
-      .requires('JS.Module', 'JS.Class', 'JS.Kernel', 'JS.Singleton', 'Proxy', 'jQuery');
+      .requires('JS.Module', 'JS.Class', 'JS.Kernel', 'JS.Singleton', 'Proxy', 'jQuery', '_');
 
     file(TR_LIB_PATH + '/views/view.js')
       .provides('TypeRanger.View')

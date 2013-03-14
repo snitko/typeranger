@@ -9,34 +9,30 @@ TypeRanger.TextNode = new JS.Class(TypeRanger.Element, {
     
     this.parent_id = parent_id; 
     this.el        = el;
-    this.text      = text;
+    this.text      = text.split(''); // A text is actually an Array of characters and links to other nodes
   },
 
   push: function(t) {
-    this.text = this.text + t;
+    this.text = this.text.concat(t.split(''));
     this.render();
   },
 
   push_child: function(c) {
     c.parent_id = this.id;
-    this.text = this.text + '{{' + c.id + '}}';      
+    this.text = this.text.concat([c.id]);      
     this.render();
   },
 
   render: function() {
-    var children_ids     = this.text.match(/\{\{(.*?)\}\}/g);
-    var rendered_content = this.text;
-    
-    // Has children? Alright, render them too first!
-    if(children_ids) {
-      this.el.html(this.text);
-      for(i=0; i < children_ids.length; i++) {
-        var text_node_id = children_ids[i].replace(/\{\{(.*?)\}\}/, "$1");
-        rendered_content = rendered_content.replace(children_ids[i],
-                           TypeRanger.TextNodeStorage.get(text_node_id).render());
+    rendered_content = '';
+    _.each(this.text, function(i) {
+      // Must be a node reference!
+      if(i.length > 1) {
+        rendered_content = rendered_content + TypeRanger.TextNodeStorage.get(i).render();
       }
-    }
-    
+      // Must be a character
+      else { rendered_content = rendered_content + i; }
+    });
     this.el.html(rendered_content);
     return this.el[0].outerHTML;
   }
