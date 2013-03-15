@@ -12,14 +12,13 @@ TypeRanger.TextNode = new JS.Class(TypeRanger.Element, {
     this.text      = text.split(''); // A text is actually an Array of characters and links to other nodes
   },
 
-  push: function(t) {
-    this.text = this.text.concat(t.split(''));
-    this.render();
-  },
-
-  push_child: function(c) {
-    c.parent_id = this.id;
-    this.text = this.text.concat([c.id]);      
+  push: function(t, at) {
+    if(!at) { at = this.text.length; }
+    var before = this.text.slice(0, at);
+    var after  = this.text.slice(at);
+    if(typeof t == 'string') { t = t.split(''); }
+    else                     { t = [t.id]; }
+    this.text  = before.concat(t).concat(after);
     this.render();
   },
 
@@ -30,7 +29,7 @@ TypeRanger.TextNode = new JS.Class(TypeRanger.Element, {
       if(i.length > 1) {
         rendered_content = rendered_content + TypeRanger.TextNodeStorage.get(i).render();
       }
-      // Must be a character
+      // Must be a character!
       else { rendered_content = rendered_content + i; }
     });
     this.el.html(rendered_content);
