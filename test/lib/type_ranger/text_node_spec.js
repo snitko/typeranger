@@ -25,4 +25,10 @@ TypeRanger.TextNodeSpec = JS.Test.describe(
       assertEqual("hello<i>world</i>", text_node.el.html());
     }});
 
+    it('removes the character at the specified position', function() { with(this) {
+      text_node.pop(1);
+      assertEqual(text_node.objects, ['h', 'l', 'l', 'o']);
+      assertEqual('hllo', text_node.el.html());
+    }});
+
 }});

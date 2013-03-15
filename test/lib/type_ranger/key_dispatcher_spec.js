@@ -15,7 +15,7 @@ TypeRanger.KeyDispatcherSpec = JS.Test.describe(
       // We'll just check one key event here, the one for Backspace
       // becayse keymaster.js handles special_keys this and we don't really have to test each
       // special key.
-      expect(TR.text_container, 'remove_prev_char').exactly(1);
+      expect(TR.text_container, 'pop').exactly(1);
       expect(TR.text_container, 'push').exactly(0);
       key.triggerKey('backspace');
     }});

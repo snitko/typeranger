@@ -62,7 +62,7 @@ TypeRanger.KeyDispatcher = new JS.Class(TypeRanger.Element, {
   // Just use key combination string as a key inside the #keys property.
   keys: {
     
-    "backspace": function() { this.typeranger.text_container.remove_prev_char(); },
+    "backspace": function() { this.typeranger.text_container.pop(); },
     "delete":    function() {},
 
   },
