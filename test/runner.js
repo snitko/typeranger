@@ -19,7 +19,6 @@ JS.require('JS.Test', function() {
     'TypeRanger.KeyDispatcherSpec',
     'TypeRanger.TextNodeSpec',
     'TypeRanger.CaretSpec',
-    'TypeRanger.TextContainerSpec',
     JS.Test.method('autorun')
   );
 });

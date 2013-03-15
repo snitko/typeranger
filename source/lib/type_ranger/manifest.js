@@ -49,10 +49,6 @@ JS.Packages(function() { with(this) {
       .provides('TypeRanger.TextNode')
       .requires('TypeRanger.Element', 'TypeRanger.TextNodeStorage', 'hex_md5');
 
-    file(TR_LIB_PATH + '/text_container.js')
-      .provides('TypeRanger.TextContainer')
-      .requires('TypeRanger.Element', 'TypeRanger.TextNode');
-
     file(TR_LIB_PATH + '/views/caret_view.js')
       .provides('TypeRanger.CaretView')
       .requires('TypeRanger.View');
@@ -62,6 +58,6 @@ JS.Packages(function() { with(this) {
 
     file(TR_LIB_PATH + '/base.js')
       .provides('TypeRanger.Base')
-      .requires('TypeRanger.Caret', 'TypeRanger.KeyDispatcher', 'TypeRanger.TextContainer');
+      .requires('TypeRanger.Caret', 'TypeRanger.KeyDispatcher', 'TypeRanger.TextNode');
 
 }});
