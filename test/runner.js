@@ -10,11 +10,8 @@ JS.Packages(function() { with(this) {
   autoload(/^(.*)Spec$/, {from: ROOT + 'test/lib', require: '$1'});
 }});
 
-JS.require("TypeRanger.Base", function() {
+JS.require("TypeRanger.Base", "JS.Test", function() {
   TR = new TypeRanger.Base();
-});
-
-JS.require('JS.Test', function() {
   JS.require(
     'TypeRanger.KeyDispatcherSpec',
     'TypeRanger.TextNodeSpec',
@@ -22,3 +19,5 @@ JS.require('JS.Test', function() {
     JS.Test.method('autorun')
   );
 });
+
+//JS.require('JS.Test', function() {});

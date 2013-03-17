@@ -6,7 +6,7 @@ TypeRanger.KeyDispatcherSpec = JS.Test.describe(
     }});
 
     it('captures current input', function() { with(this) {
-      expect(TR.text_container, 'push').given("a").exactly(1);
+      expect(TR.caret, 'insert_before').given("a").exactly(1);
       key_dispatcher.input_container.val("a");
       key_dispatcher.input_container.trigger($.Event('change'));
     }});
@@ -15,8 +15,8 @@ TypeRanger.KeyDispatcherSpec = JS.Test.describe(
       // We'll just check one key event here, the one for Backspace
       // becayse keymaster.js handles special_keys this and we don't really have to test each
       // special key.
-      expect(TR.text_container, 'pop').exactly(1);
-      expect(TR.text_container, 'push').exactly(0);
+      expect(TR.caret, 'delete_before').exactly(1);
+      expect(TR.caret, 'insert_before').exactly(0);
       key.triggerKey('backspace');
     }});
 

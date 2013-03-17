@@ -26,9 +26,20 @@ TypeRanger.TextNodeSpec = JS.Test.describe(
     }});
 
     it('removes the character at the specified position', function() { with(this) {
-      text_node.pop(1);
-      assertEqual(text_node.objects, ['h', 'l', 'l', 'o']);
-      assertEqual('hllo', text_node.el.html());
+      text_node.pop(5);
+      assertEqual(['h', 'e', 'l', 'l'], text_node.objects);
+      assertEqual('hell', text_node.el.html());
+      text_node.pop(4);
+      assertEqual(['h', 'e', 'l'], text_node.objects);
+      assertEqual('hel', text_node.el.html());
+    }});
+
+    it('knows the position at which a pushed line of text or a pushed node ends', function() { with(this) {
+      assertEqual(11, text_node.push(" world"));
+    }});
+
+    it('knows the position at which poped line of text or a poped node started', function() { with(this) {
+      assertEqual(0, text_node.pop(1));
     }});
 
 }});

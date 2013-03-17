@@ -49,8 +49,15 @@ TypeRanger.KeyDispatcher = new JS.Class(TypeRanger.Element, {
       this.key_is_down = false;
     },
     change: function() {
-      if(this.key_is_special) { this.clear_current_input(); return; }
-      this.typeranger.text_container.push(this.get_current_input());
+      var current_input = this.get_current_input();
+
+      // Checking if special key was pressed
+      // or maybe nothing has really changed in the input field (this may happen
+      // when `change` event is fired with setTimeout() from #check_for_input_container_changes()
+      if(this.key_is_special || this.last_input == current_input) { this.clear_current_input(); return; }
+
+      this.last_input = current_input; 
+      this.typeranger.caret.insert_before(current_input);
     }
 
   },
@@ -62,7 +69,7 @@ TypeRanger.KeyDispatcher = new JS.Class(TypeRanger.Element, {
   // Just use key combination string as a key inside the #keys property.
   keys: {
     
-    "backspace": function() { this.typeranger.text_container.pop(); },
+    "backspace": function() { this.typeranger.caret.delete_before(); },
     "delete":    function() {},
 
   },
@@ -86,7 +93,7 @@ TypeRanger.KeyDispatcher = new JS.Class(TypeRanger.Element, {
   },
 
   // It is absolutely unclear from this method's name what it does. You'll never guess.
-  clear_current_input: function() { this.input_container.val(''); },
+  clear_current_input: function() { this.input_container.val(''); this.last_input = ''; },
 
   // Periodically checks for changes in the input container and fires a change event.
   // Starts the setTimeOut loop when on keydown and keeps checking until the key is up. Thus,

@@ -2,7 +2,28 @@ TypeRanger.CaretSpec = JS.Test.describe(
 'TypeRanger.Caret', function() { with(this) {
 
     before(function() { with(this) {
-      this.caret = TR.caret;
+      this.text_node  = new TypeRanger.TextNode('', $('<b></b>'));
+      this.caret      = TR.caret;
+      
+      // Put caret in out custom node, not the main one
+      // Important to do so this node only exists within this spec.
+      this.caret.node = this.text_node;
+      this.caret.pos  = this.text_node.last_pos_index();
+    }});
+
+    it('updates its position on caret movement', function() { with(this){
+      //caret.pos = 0;
+      //caret.move_right(5);
+      //assertEqual(5, caret.pos);
+      //caret.move_left(2);
+      //assertEqual(3, caret.pos);
+    }});
+
+    it('allows text to be inserted before and after the caret', function() { with(this) {
+      assertEqual(0, caret.pos);
+      caret.insert_before('hello world');
+      assertEqual('hello world', caret.node.el.html());
+      assertEqual(11, caret.pos);
     }});
 
 }});
