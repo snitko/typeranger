@@ -7,8 +7,8 @@ TypeRanger.Caret = new JS.Class(TypeRanger.Element, {
     this.pos  = this.node.last_pos_index();
   },
 
-  move_left:  function(distance) {},
-  move_right: function(distance) {},
+  move_left:  function(distance) { this.update_position(this.pos - distance); },
+  move_right: function(distance) { this.update_position(this.pos + distance); },
   move_down:  function()         {},
   move_up:    function()         {},
 
@@ -16,11 +16,15 @@ TypeRanger.Caret = new JS.Class(TypeRanger.Element, {
     this.update_position(this.node.push(s, this.pos));
   },
 
+  insert_after: function(s) {
+  },
+
   delete_before: function() {
     this.update_position(this.node.pop(this.pos));
   },
 
-  insert_after: function(s) {
+  delete_after: function() {
+    this.node.pop(this.pos+1);
   },
 
   update_position: function(new_pos) {

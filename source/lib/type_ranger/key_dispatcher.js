@@ -70,7 +70,9 @@ TypeRanger.KeyDispatcher = new JS.Class(TypeRanger.Element, {
   keys: {
     
     "backspace": function() { this.typeranger.caret.delete_before(); },
-    "delete":    function() {},
+    "delete":    function() { this.typeranger.caret.delete_after();  },
+    "left":      function() { this.typeranger.caret.move_left(1);    },
+    "right":     function() { this.typeranger.caret.move_right(1);   }
 
   },
 

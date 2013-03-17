@@ -51,7 +51,7 @@ TypeRanger.TextNode = new JS.Class(TypeRanger.Element, {
 
   // Responsible for rendering a DOM element (and all its children)
   // associated with this node; we call it from #push(), #pop() and all other
-  // methods that change the node on some way.
+  // methods that change the node in some way.
   render: function() {
     rendered_content = '';
     _.each(this.objects, function(i) {
