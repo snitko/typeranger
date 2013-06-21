@@ -1,3 +1,15 @@
 .editor { margin: 2em auto; width: 700px; min-height: 500px; border: dotted 1px #ddd; }
 .caret  { height: 1em; width: 1px; background-color: #000; position: absolute; }
 .shadowCaret { height: 0px; width: 0px; }
+
+.TypeRangerDebugLoggerView {
+
+  margin-top: 2em;
+  h2 { font-size: 80%; text-align: center; }
+
+  table {
+    border-collapse: collapse; margin: 0 auto; width: 700px; font-size: 90%;
+    td, th { border: dotted 1px #aaa; padding: 0.5em; }
+  }
+
+}

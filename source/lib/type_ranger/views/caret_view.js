@@ -40,7 +40,7 @@ TypeRanger.CaretView = new JS.Class(TypeRanger.View, {
   // Uses TypeRanger.Caret data about the logical position of the caret
   // withing the editor to render the visual position of the caret on the screen.
   // CaretView #el() always has absolute position. It doesn't know anything
-  // nor about the editor neither about the elements within it.
+  // neither about the editor nor about the elements within it.
   render: function() {
     this.el().css({top: this.shadow_el().offset().top, left: this.shadow_el().offset().left});
   },

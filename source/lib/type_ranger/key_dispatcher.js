@@ -1,5 +1,5 @@
 // Takes care of various keys pressed on a keyboard
-TypeRanger.KeyDispatcher = new JS.Class(TypeRanger.Element, {
+TypeRanger.KeyDispatcher = new JS.Class('KeyDispatcher', TypeRanger.Element, {
   
 
   initialize: function(typeranger) {

@@ -13,3 +13,17 @@
 .shadowCaret {
   height: 0px;
   width: 0px; }
+
+.TypeRangerDebugLoggerView {
+  margin-top: 2em; }
+  .TypeRangerDebugLoggerView h2 {
+    font-size: 80%;
+    text-align: center; }
+  .TypeRangerDebugLoggerView table {
+    border-collapse: collapse;
+    margin: 0 auto;
+    width: 700px;
+    font-size: 90%; }
+    .TypeRangerDebugLoggerView table td, .TypeRangerDebugLoggerView table th {
+      border: dotted 1px #aaa;
+      padding: 0.5em; }

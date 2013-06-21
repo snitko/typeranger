@@ -1,6 +1,6 @@
 // Holds text along with its child nodes. Child nodes are
 // referenced within the text with {{child_node_id}}
-TypeRanger.TextNode = new JS.Class(TypeRanger.Element, {
+TypeRanger.TextNode = new JS.Class('TextNode', TypeRanger.Element, {
 
   initialize: function(text, el, parent_id) {
     

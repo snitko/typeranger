@@ -1,4 +1,4 @@
-TypeRanger.Base = new JS.Class({
+TypeRanger.Base = new JS.Class('Base', {
 
   initialize: function() {
     

@@ -36,4 +36,9 @@ TypeRanger.CaretSpec = JS.Test.describe(
       assertEqual('ello worl', caret.node.el.html());
     }});
 
+    it('changes current node to parent when border is reached', function()  { with(this) {
+      var child_node = new TypeRanger.TextNode('child node', $('<span></span>'));
+      //...
+    }});
+
 }});

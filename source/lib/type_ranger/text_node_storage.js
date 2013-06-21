@@ -1,4 +1,4 @@
-TypeRanger.TextNodeStorage = new JS.Singleton({
+TypeRanger.TextNodeStorage = new JS.Singleton('TextNodeStorage', {
   
   initialize: function() {
     this.nodes = {};            

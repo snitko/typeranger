@@ -20,23 +20,35 @@ JS.Packages(function() { with(this) {
     file(ROOT + 'vendor/keymaster.js')
         .provides('key');
 
-    file(ROOT + 'vendor/underscore-min.js')
+    file(ROOT + 'vendor/underscore-min.js', TR_LIB_PATH + '/lib/chainable_call.js')
         .provides('_');
 
     file(ROOT + 'vendor/md5.js')
         .provides('hex_md5');
 
-    file(TR_LIB_PATH + '/proxy.js')
+    // Modules used by TypeRanger classes
+    file(TR_LIB_PATH + '/modules/proxy.js')
       .provides('Proxy')
       .requires('JS.Module', 'JS.Class', 'JS.Kernel', 'JS.Singleton');
+    file(TR_LIB_PATH + '/modules/debuggable.js')
+      .provides('TypeRanger.Debuggable')
+      .requires('JS.Module');
 
     file(TR_LIB_PATH + '/element.js')
       .provides('TypeRanger.Element')
-      .requires('JS.Module', 'JS.Class', 'JS.Kernel', 'JS.Singleton', 'Proxy', 'jQuery', '_');
+      .requires('JS.Module', 'JS.Class', 'JS.Kernel', 'JS.Singleton', 'Proxy', 'TypeRanger.Debuggable', 'jQuery', '_');
 
     file(TR_LIB_PATH + '/views/view.js')
       .provides('TypeRanger.View')
       .requires('JS.Module', 'JS.Class', 'JS.Kernel', 'JS.Singleton', 'Proxy', 'jQuery');
+
+
+    file(TR_LIB_PATH + '/views/debug_logger_view.js')
+      .provides('TypeRanger.DebugLoggerView')
+      .requires('TypeRanger.View');
+    file(TR_LIB_PATH + '/debug_logger.js')
+      .provides('TypeRanger.DebugLogger')
+      .requires('TypeRanger.Element', 'TypeRanger.DebugLoggerView');
 
     file(TR_LIB_PATH + '/key_dispatcher.js')
       .provides('TypeRanger.KeyDispatcher')
@@ -58,6 +70,6 @@ JS.Packages(function() { with(this) {
 
     file(TR_LIB_PATH + '/base.js')
       .provides('TypeRanger.Base')
-      .requires('TypeRanger.Caret', 'TypeRanger.KeyDispatcher', 'TypeRanger.TextNode');
+      .requires('TypeRanger.Caret', 'TypeRanger.KeyDispatcher', 'TypeRanger.TextNode', 'TypeRanger.DebugLogger');
 
 }});
