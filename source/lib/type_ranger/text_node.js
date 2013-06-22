@@ -68,3 +68,5 @@ TypeRanger.TextNode = new JS.Class('TextNode', TypeRanger.Element, {
   }
 
 });
+
+TypeRanger.TextNode.loggable({methods: ['pop', 'push'], properties: ['id', 'parent_id']});
