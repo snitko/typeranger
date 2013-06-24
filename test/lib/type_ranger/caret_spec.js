@@ -37,8 +37,43 @@ TypeRanger.CaretSpec = JS.Test.describe(
     }});
 
     it('changes current node to parent when border is reached', function()  { with(this) {
-      var child_node = new TypeRanger.TextNode('child node', $('<span></span>'));
-      //...
+
+      var child_node  = new TypeRanger.TextNode('child node', $('<span>child node</span>'));
+      var child_node2 = new TypeRanger.TextNode('child node', $('<span>child node 2</span>'));
+
+      caret.insert_before('hello world');
+      caret.insert_before(child_node);
+      caret.node = text_node;
+      assertEqual(caret.node, text_node);
+      caret.pos  = this.text_node.last_pos_index();
+      caret.insert_before('lala');
+      assertEqual(16, caret.pos);
+
+      // Moving caret backwards, into the child node
+      caret.move_left(4);
+      assertEqual(caret.node, child_node);
+      assertEqual(10, caret.pos);
+
+      // Moving caret forward, into the child node
+      caret.node = text_node;
+      caret.pos  = 11;
+      caret.move_right(1);
+      assertEqual(caret.node, child_node);
+      assertEqual(0, caret.pos);
+
+      // Moving caret from one child node into another, that is its neighboor
+      caret.node = text_node;
+      caret.pos  = 12;
+      caret.insert_before(child_node2);
+      caret.node = text_node;
+      caret.pos  = 12;
+      caret.move_right(1);
+      assertEqual(caret.node, child_node2);
+      assertEqual(0, caret.pos);
+
+    }});
+
+    it("doesn't change pos beyond node's border if there's nothing else out there", function()  { with(this) {
     }});
 
 }});
