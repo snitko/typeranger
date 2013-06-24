@@ -14,7 +14,7 @@ TypeRanger.Debuggable = new JS.Module({
     if(properties) {
       self = this;
       _.each(properties, function(n) {
-        loggable_properties[n] = _.chain_call(self, n);
+        loggable_properties[n] = _.foldedProp(self, n);
       });
     }
                

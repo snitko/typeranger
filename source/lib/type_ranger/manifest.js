@@ -20,7 +20,7 @@ JS.Packages(function() { with(this) {
     file(ROOT + 'vendor/keymaster.js')
         .provides('key');
 
-    file(ROOT + 'vendor/underscore-min.js', TR_LIB_PATH + '/lib/chainable_call.js')
+    file(ROOT + 'vendor/underscore-min.js', TR_LIB_PATH + '/lib/folded_prop.js')
         .provides('_');
 
     file(ROOT + 'vendor/md5.js')
