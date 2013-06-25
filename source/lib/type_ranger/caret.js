@@ -35,14 +35,26 @@ TypeRanger.Caret = new JS.Class("Caret", TypeRanger.Element, {
   // 0 or node.last_pos_index() depending on the previous position of
   // the caret.
   update_position: function(new_pos) {
+
+    var move_direction = (new_pos > this.pos ? 1 : -1);
+
+    var set_new_position = function(move_direction) {
+      if(move_direction < 0) { new_pos = this.node.last_pos_index(); }
+      else                   { new_pos = 0; }   
+    }
+
+    // Do not move caret beyond the root node
+    if(_.isUndefined(this.node.parent_id) && _.isUndefined(this.node.objects[new_pos-1])) {
+      this.proxy(set_new_position, -move_direction)();
+    }
+
+    if(this.node.objects[new_pos-1] && this.node.objects[new_pos-1].length > 1) {
+      this.node = TypeRanger.TextNodeStorage.get(this.node.objects[new_pos-1]);
+      this.proxy(set_new_position, move_direction)();
+    }
+
     this.prev_pos = this.pos;
     this.pos      = new_pos;
-    console.log(this.node.objects[this.pos-1]);
-    if(this.node.objects[this.pos-1] && this.node.objects[this.pos-1].length > 1) {
-      this.node = TypeRanger.TextNodeStorage.get(this.node.objects[this.pos-1]);
-      if(this.prev_pos > this.pos) { this.pos = this.node.last_pos_index(); }
-      else                         { this.pos = 0; }
-    }
     this.view.place_shadow_at(this.pos);
     this.view.render(); 
   }

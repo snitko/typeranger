@@ -12,6 +12,7 @@ TypeRanger.CaretSpec = JS.Test.describe(
     }});
 
     it('updates its position on caret movement', function() { with(this){
+      caret.insert_before('hello world');
       caret.pos = 0;
       caret.move_right(5);
       assertEqual(5, caret.pos);
@@ -74,6 +75,9 @@ TypeRanger.CaretSpec = JS.Test.describe(
     }});
 
     it("doesn't change pos beyond node's border if there's nothing else out there", function()  { with(this) {
+      caret.insert_before('hello world');
+      caret.move_right(1);
+      assertEqual(text_node.last_pos_index(), caret.pos);
     }});
 
 }});
